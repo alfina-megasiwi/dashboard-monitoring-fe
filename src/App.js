@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Dashboard Monitoring FE
+          Dashboard Monitoring Front End
         </p>
         <a
           className="App-link"
