@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Monitoring from "./page/Monitoring/Monitoring";
+import Flow from "./page/Flow/Flow";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Dashboard Monitoring Front End
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <div className="content">
+          <Sidebar />
+          <Routes>
+            <Route path="/" element={<Monitoring />} />
+            <Route path="/flow" element={<Flow />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
