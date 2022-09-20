@@ -22,7 +22,7 @@ const Sidebar = () => {
               <MdMonitor /> Monitoring
             </li>
           </Link>
-          <Link to="/">
+          <Link to="/checklist-eod">
             <li>
               <TbChecklist /> Checklist EOD
             </li>
