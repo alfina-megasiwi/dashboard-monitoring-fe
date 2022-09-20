@@ -5,14 +5,13 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 270px;
+  text-align: center;
+  transition: all 0.4s;
 }
-
 
 .logo img {
   margin-top: 4rem;
   margin-bottom: 4rem;
-  width: 240px;
 }
 
 .menu {
@@ -24,7 +23,7 @@
 
 .menu li {
   font-size: 20px;
-  padding-left: 20px;
+  padding-left: 25px;
   padding-top: 12px;
   padding-bottom: 12px;
 }
@@ -32,7 +31,39 @@
 .menu li:hover {
   background-color: #0a3480;
   color: white;
-  transition:all 0.4s ease;
-
+  transition: all 0.4s ease;
 }
 
+.centered-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shrink {
+  position: absolute;
+  bottom: 0;
+  margin-left: 75%;
+  margin-bottom: 10%;
+}
+
+.expand {
+  position: absolute;
+  bottom: 0;
+  margin-left: 20%;
+  margin-bottom: 30%;
+}
+
+.side {
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.side:hover {
+  background-color: #0a3480;
+  color: white;
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 10px;
+}
