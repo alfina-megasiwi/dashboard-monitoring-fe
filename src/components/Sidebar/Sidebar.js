@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
 import Logo from "./logo.svg";
 import { MdMonitor, MdError } from "react-icons/md";
@@ -67,12 +67,12 @@ const Sidebar = () => {
           </ul>
         </div>
         {isOpen ? (
-          <div className="shrink side">
-            <FaAngleDoubleLeft size={30} onClick={toogle} />
+          <div className="shrink side" onClick={toogle}>
+            <FaAngleDoubleLeft size={30} />
           </div>
         ) : (
-          <div className="expand side">
-            <FaAngleDoubleRight size={30} onClick={toogle} />
+          <div className="expand side" onClick={toogle}>
+            <FaAngleDoubleRight size={30} />
           </div>
         )}
       </div>
