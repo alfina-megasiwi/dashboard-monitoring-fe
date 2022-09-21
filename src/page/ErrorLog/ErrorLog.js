@@ -1,12 +1,12 @@
 import React from "react";
-import "./ChecklistEOD.css";
+import "./ErrorLog.css";
 import image from "./under-construction.svg";
 
 const Header = () => {
   return (
     <div><br></br>
         <div className="text">
-            <h1>CHECKLIST EOD</h1>
+            <h1>ERROR LOG</h1>
         </div>
         <div className="under-construction">
             <img src={image} alt="under-construction"></img>

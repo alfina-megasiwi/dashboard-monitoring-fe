@@ -4,6 +4,8 @@ import Monitoring from "./page/Monitoring/Monitoring";
 import Flow from "./page/Flow/Flow";
 import Sidebar from "./components/Sidebar/Sidebar";
 import ChecklistEOD from "./page/ChecklistEOD/ChecklistEOD";
+import ChecklistEOM from "./page/ChecklistEOM/ChecklistEOM";
+import ErrorLog from "./page/ErrorLog/ErrorLog";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
             <Route path="/" element={<Monitoring />} />
             <Route path="/flow" element={<Flow />} />
             <Route path="/checklist-eod" element={<ChecklistEOD />} />
+            <Route path="/checklist-eom" element={<ChecklistEOM />} />
+            <Route path="/error-log" element={<ErrorLog />} />
           </Routes>
         </div>
       </div>
