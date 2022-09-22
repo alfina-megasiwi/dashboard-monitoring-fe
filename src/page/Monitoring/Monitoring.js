@@ -40,7 +40,7 @@ const Monitoring = () => {
             </div>
           ))}
         </div>
-        <ErrorTable />
+        {/* <ErrorTable /> */}
       </div>
     </div>
   );
