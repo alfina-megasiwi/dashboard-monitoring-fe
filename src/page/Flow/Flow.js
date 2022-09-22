@@ -1,18 +1,22 @@
 import React from "react";
-import "./Flow.css";
-import image from "./card.svg";
+import "../ChecklistEOD/ChecklistEOD.css";
+import image from "../ChecklistEOD/under-construction.svg";
 
-const Flow = () => {
+const Header = () => {
   return (
-    <div><br></br>
-        <div className="text">
-            <h1>CHECKLIST EOD</h1>
+    <div>
+      <br></br>
+      <div className="container-eod">
+        <h1>FLOW</h1>
+        <div className="under-construction">
+          <img src={image} alt="under-construction"></img>
         </div>
-        <div className="card">
-            <img src={image} alt="card"></img>
+        <div className="text-image">
+          <h2>Page Under Construction</h2>
         </div>
+      </div>
     </div>
   );
 };
 
-export default Flow;
+export default Header;

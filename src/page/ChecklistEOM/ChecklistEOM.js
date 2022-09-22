@@ -1,19 +1,20 @@
 import React from "react";
-import "./ChecklistEOM.css";
-import image from "./under-construction.svg";
+import "../ChecklistEOD/ChecklistEOD.css";
+import image from "../ChecklistEOD/under-construction.svg";
 
 const Header = () => {
   return (
-    <div><br></br>
-        <div className="text">
-            <h1>CHECKLIST EOM</h1>
-        </div>
+    <div>
+      <br></br>
+      <div className="container-eod">
+        <h1>CHECKLIST EOM</h1>
         <div className="under-construction">
-            <img src={image} alt="under-construction"></img>
+          <img src={image} alt="under-construction"></img>
         </div>
         <div className="text-image">
-            <h2>Page Under Construction</h2>
+          <h2>Page Under Construction</h2>
         </div>
+      </div>
     </div>
   );
 };

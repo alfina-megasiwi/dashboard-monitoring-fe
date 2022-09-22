@@ -1,22 +1,23 @@
-.text {
-    margin-top: 2rem;
-    margin-bottom: 4rem;
-    margin-left: 40%;
+.container-eod h1{
     color: white;
-    display: flex;
-    font-size: larger;
+    font-size: 4vw;
+    text-align: center;
+    margin-bottom: 3vw;
 }
+
 .under-construction{
-    display: block;
-    margin-left: 35%;
+    text-align: center;
+}
+
+.under-construction img{
+    width: 40vw;
+    height: 40vw;
 
 }
 
-.text-image {
-    margin-top: 2rem;
-    margin-bottom: 4rem;
-    margin-left: 40%;
+.text-image h2{
     color: white;
-    display: flex;
-    font-size: larger;
+    font-size: 2vw;
+    text-align: center;
+    margin-top: -2vw;
 }
