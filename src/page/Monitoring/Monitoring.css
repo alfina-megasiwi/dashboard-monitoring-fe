@@ -1,0 +1,35 @@
+.main-text {
+  color: white;
+  font-size: 2vw;
+}
+.card-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-today {
+  width: 23%;
+  background: linear-gradient(
+    62.42deg,
+    rgba(255, 255, 255, 0.1) 20.61%,
+    rgba(255, 255, 255, 0) 82.27%
+  );
+  backdrop-filter: blur(5px);
+  border-radius: 1vw;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.181);
+  border-right: 1px solid rgba(255, 255, 255, 0.204);
+}
+
+.today-title {
+  margin-top: 3vh;
+  text-align: center;
+  font-size: 1.6vw;
+}
+
+.today-value {
+  margin-bottom: 3vh;
+  text-align: center;
+  font-size: 4vw;
+  font-weight: bolder;
+}

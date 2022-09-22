@@ -1,12 +1,9 @@
 .sidebar {
   background-color: rgb(255, 255, 255);
-  width: 100%;
   position: fixed;
-  top: 0;
   left: 0;
   height: 100%;
   text-align: center;
-  transition: all 0.4s;
 }
 
 .logo img {
@@ -22,7 +19,7 @@
 }
 
 .menu li {
-  font-size: 20px;
+  font-size: 3vh;
   padding-left: 25px;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -40,30 +37,3 @@
   gap: 10px;
 }
 
-.shrink {
-  position: absolute;
-  bottom: 0;
-  margin-left: 75%;
-  margin-bottom: 10%;
-}
-
-.expand {
-  position: absolute;
-  bottom: 0;
-  margin-left: 20%;
-  margin-bottom: 30%;
-}
-
-.side {
-  transition: all 0.3s ease;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.side:hover {
-  background-color: #0a3480;
-  color: white;
-  transition: all 0.3s ease;
-  padding: 10px;
-  border-radius: 10px;
-}

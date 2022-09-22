@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Sidebar.css";
 import Logo from "./logo.svg";
 import { MdMonitor, MdError } from "react-icons/md";
 import { TbChecklist } from "react-icons/tb";
 import { BiCalendarCheck } from "react-icons/bi";
 import { RiFlowChart } from "react-icons/ri";
-import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toogle = () => setIsOpen(!isOpen);
+const Sidebar = ({ isOpen }) => {
   const menuItem = [
     {
       path: "/",
@@ -41,7 +38,7 @@ const Sidebar = () => {
 
   return (
     <div className="contained">
-      <div className="sidebar" style={{ width: isOpen ? "270px" : "80px" }}>
+      <div className="sidebar" style={{ width: isOpen ? "250px" : "80px" }}>
         <div className="logo-container">
           <div className="logo">
             <img
@@ -66,15 +63,6 @@ const Sidebar = () => {
             ))}
           </ul>
         </div>
-        {isOpen ? (
-          <div className="shrink side" onClick={toogle}>
-            <FaAngleDoubleLeft size={30} />
-          </div>
-        ) : (
-          <div className="expand side" onClick={toogle}>
-            <FaAngleDoubleRight size={30} />
-          </div>
-        )}
       </div>
     </div>
   );

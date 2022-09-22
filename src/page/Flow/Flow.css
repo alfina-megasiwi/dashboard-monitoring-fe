@@ -1,0 +1,14 @@
+.text {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 40%;
+    color: white;
+    display: flex;
+    font-size: larger;
+}
+.card{
+    display: block;
+    margin-left: 20%;
+
+}
+
