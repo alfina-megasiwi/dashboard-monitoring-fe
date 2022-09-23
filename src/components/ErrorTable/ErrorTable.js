@@ -7,6 +7,7 @@ import { BiCheck } from "react-icons/bi";
 const ErrorTable = () => {
   return (
     <div className="error-container">
+      <br/>
       <div className="error-card">
         <div className="error-card-title">Error Records</div>
         <div className="error-card-body">

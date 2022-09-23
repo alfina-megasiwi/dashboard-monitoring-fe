@@ -1,4 +1,5 @@
 import React from "react";
+import DataMonitoring from "../../components/DataMonitoring/DataMonitoring";
 import ErrorTable from "../../components/ErrorTable/ErrorTable";
 import "./Monitoring.css";
 
@@ -40,6 +41,9 @@ const Monitoring = () => {
             </div>
           ))}
         </div>
+        <br />
+        <br />
+        <DataMonitoring />
         <ErrorTable />
       </div>
     </div>
