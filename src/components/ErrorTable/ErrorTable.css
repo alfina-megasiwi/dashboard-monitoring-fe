@@ -1,26 +1,48 @@
-.error-container{
-    margin-top: 4vh;
+.error-container {
+  margin-top: 4vh;
 }
-.error-card{
-    background: linear-gradient(
-      62.42deg,
-      rgba(255, 255, 255, 0.1) 20.61%,
-      rgba(255, 255, 255, 0) 82.27%
-    );
-    backdrop-filter: blur(5px);
-    border-radius: 1vw;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-    border-top: 1px solid rgba(255, 255, 255, 0.181);
-    border-right: 1px solid rgba(255, 255, 255, 0.204);
-}
-
-.error-card-title{
-    margin-top: 3vh;
-    font-weight: bold;
-    font-size: larger;
-    text-align: center;
+.error-card {
+  background: linear-gradient(
+    62.42deg,
+    rgba(255, 255, 255, 0.1) 20.61%,
+    rgba(255, 255, 255, 0) 82.27%
+  );
+  backdrop-filter: blur(5px);
+  border-radius: 1vw;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.181);
+  border-right: 1px solid rgba(255, 255, 255, 0.204);
 }
 
-.error-card-body{
-    padding: 3vw;
+.error-card-title {
+  margin-top: 3vh;
+  font-weight: bold;
+  font-size: larger;
+  text-align: center;
+}
+
+.error-card-body {
+  padding: 3vw;
+  font-size: 1.4vw;
+}
+
+.error-card-body thead tr {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+.table {
+  --bs-table-bg: rgba(255, 255, 255, 0.64) !important;
+  --bs-table-border-color: #ffffff48 !important;
+  --bs-table-striped-bg: rgba(255, 255, 255, 0.64) !important;
+  --bs-table-striped-color: rgb(0, 0, 0) !important;
+  --bs-table-color: rgb(0, 0, 0) !important;
+  --bs-table-hover-bg: #03356eb1 !important;
+  --bs-table-hover-color: rgb(255, 255, 255) !important;
+}
+
+.halo {
+  color: white;
+  --bs-table-bg: rgba(0, 40, 108, 0.353) !important;
 }

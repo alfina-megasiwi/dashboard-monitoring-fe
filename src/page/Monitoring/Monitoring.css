@@ -7,6 +7,19 @@
   justify-content: space-between;
 }
 
+.title-monitoring {
+  margin-top: 3vh;
+  font-size: 4vw;
+  font-weight: bolder;
+}
+
+.title-today {
+  font-size: 2vw;
+  font-weight: bolder;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
 .card-today {
   width: 23%;
   background: linear-gradient(

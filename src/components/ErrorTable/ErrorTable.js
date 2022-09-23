@@ -1,82 +1,119 @@
-// import React, { useState, useEffect } from "react";
-// import "./ErrorTable.css";
-// // import { makeStyles } from "@material-ui/core/styles";
-// // import Table from "@material-ui/core/Table";
-// // import TableBody from "@material-ui/core/TableBody";
-// // import TableCell from "@material-ui/core/TableCell";
-// // import TableContainer from "@material-ui/core/TableContainer";
-// // import TableHead from "@material-ui/core/TableHead";
-// // import TableRow from "@material-ui/core/TableRow";
-// // import Paper from "@material-ui/core/Paper";
-// // import axios from "axios";
+import React from "react";
+import "./ErrorTable.css";
+import Table from "react-bootstrap/Table";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BiCheck } from "react-icons/bi";
 
-// const ErrorTable = () => {
-//   const useStyles = makeStyles({
-//     table: {
-//       minWidth: 650,
-//     },
-//     sticky: {
-//       position: "sticky",
-//       left: 0,
-//       background: "white",
-//       boxShadow: "5px 2px 5px grey",
-//     },
-//   });
+const ErrorTable = () => {
+  return (
+    <div className="error-container">
+      <div className="error-card">
+        <div className="error-card-title">Error Records</div>
+        <div className="error-card-body">
+          <Table id="error-table" responsive striped bordered hover>
+            <thead>
+              <tr className="halo">
+                <td rowSpan={2}>No.</td>
+                <td rowSpan={2}>Error</td>
+                <td colSpan={7}>Date (September 2022)</td>
+                <td rowSpan={2}>Temporary Solve</td>
+                <td rowSpan={2}>Follow-Up</td>
+              </tr>
+              <tr className="halo">
+                <td>19</td>
+                <td>20</td>
+                <td>21</td>
+                <td>22</td>
+                <td>23</td>
+                <td>24</td>
+                <td>25</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style={{ textAlign: "center" }}>1</td>
+                <td>Nomor Rekening Tidak Dikenal </td>
+                <td>
+                  <BiCheck size={15} />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Nomor Rekening Tidak Dikenal </td>
+                <td>Nomor Rekening Tidak Dikenal </td>
+              </tr>
+              <tr>
+                <td style={{ textAlign: "center" }}>2</td>
+                <td>General Error </td>
+                <td></td>
+                <td>
+                  <BiCheck size={15} />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>General Error </td>
+                <td>General Error </td>
+              </tr>
+              <tr>
+                <td style={{ textAlign: "center" }}>3</td>
+                <td>
+                  io.mib.arx.is.server.gateway.exceptions.EndpointClientExce{" "}
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                  <BiCheck size={15} />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  io.mib.arx.is.server.gateway.exceptions.EndpointClientExce
+                </td>
+                <td>
+                  io.mib.arx.is.server.gateway.exceptions.EndpointClientExce{" "}
+                </td>
+              </tr>
+              <tr>
+                <td style={{ textAlign: "center" }}>4</td>
+                <td>
+                  io.mib.nio.common.exceptions.ReadResponseTimeoutException{" "}
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <BiCheck size={15} />
+                </td>
+                <td>
+                  <BiCheck size={15} />
+                </td>
+                <td>
+                  <BiCheck size={15} />
+                </td>
+                <td>
+                  <BiCheck size={15} />
+                </td>
+                <td>
+                  io.mib.nio.common.exceptions.ReadResponseTimeoutException
+                </td>
+                <td>
+                  io.mib.nio.common.exceptions.ReadResponseTimeoutException{" "}
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-//   const [data, setData] = useState([]);
-//   const classes = useStyles();
-
-//   useEffect(() => {
-//     axios
-//       .get("https://jsonplaceholder.typicode.com/users")
-//       .then((res) => {
-//         setData(res.data);
-//         console.log("Result:", data);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   }, []);
-
-//   return (
-//     <div className="error-container">
-//       <div className="error-card">
-//         <div className="error-card-title">Error Records</div>
-//         <div className="error-card-body">
-//           <TableContainer component={Paper}>
-//             <Table aria-label="simple table">
-//               <TableHead>
-//                 <TableRow>
-//                   <TableCell className={classes.sticky}>Name</TableCell>
-//                   <TableCell align="right">Username</TableCell>
-//                   <TableCell align="right">Email</TableCell>
-//                   <TableCell align="right">Phone</TableCell>
-//                   <TableCell align="right">Website</TableCell>
-//                 </TableRow>
-//               </TableHead>
-//               <TableBody>
-//                 {data.map((row) => (
-//                   <TableRow key={row.id}>
-//                     <TableCell
-//                       component="th"
-//                       scope="row"
-//                       className={classes.sticky}
-//                     >
-//                       {row.name}
-//                     </TableCell>
-//                     <TableCell align="right">{row.username}</TableCell>
-//                     <TableCell align="right">{row.email}</TableCell>
-//                     <TableCell align="right">{row.phone}</TableCell>
-//                     <TableCell align="right">{row.website}</TableCell>
-//                   </TableRow>
-//                 ))}
-//               </TableBody>
-//             </Table>
-//           </TableContainer>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ErrorTable;
+export default ErrorTable;

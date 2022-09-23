@@ -25,8 +25,8 @@ const Monitoring = () => {
     <div>
       <br />
       <div className="main-text">
-        <h1>MONITORING</h1>
-        <h3>Today (H-1)</h3>
+        <div className="title-monitoring">MONITORING</div>
+        <div className="title-today">Today (H-1)</div>
         <div className="card-container">
           {dataToday.map((item) => (
             <div className="card-today">
@@ -40,7 +40,7 @@ const Monitoring = () => {
             </div>
           ))}
         </div>
-        {/* <ErrorTable /> */}
+        <ErrorTable />
       </div>
     </div>
   );
