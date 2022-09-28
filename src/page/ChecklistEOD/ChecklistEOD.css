@@ -1,8 +1,10 @@
-.container-eod h1{
+.title-under-construction{
+    margin-top: 3vh;
     color: white;
     font-size: 4vw;
     text-align: center;
     margin-bottom: 3vw;
+    font-weight: bolder;
 }
 
 .under-construction{

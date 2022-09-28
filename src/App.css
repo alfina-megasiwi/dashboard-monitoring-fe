@@ -38,3 +38,9 @@
   padding: 10px;
   border-radius: 10px;
 }
+
+a:link {
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  text-decoration: none;
+}

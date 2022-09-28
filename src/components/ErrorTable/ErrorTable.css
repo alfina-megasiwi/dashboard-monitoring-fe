@@ -1,4 +1,6 @@
-
+.error-container {
+  margin-top: 4vh;
+}
 .error-card {
   background: linear-gradient(
     62.42deg,
@@ -21,7 +23,7 @@
 
 .error-card-body {
   padding: 3vw;
-  font-size: 1.2vw;
+  font-size: 1.4vw;
 }
 
 .error-card-body thead tr {
@@ -36,15 +38,12 @@
   --bs-table-striped-bg: rgba(255, 255, 255, 0.64) !important;
   --bs-table-striped-color: rgb(0, 0, 0) !important;
   --bs-table-color: rgb(0, 0, 0) !important;
-  --bs-table-hover-bg: #03356eb1 !important;
   --bs-table-hover-color: rgb(255, 255, 255) !important;
-}
-
-.table:hover {
-  transition: all 0.4s ease;
 }
 
 .halo {
   color: white;
   --bs-table-bg: rgba(0, 40, 108, 0.353) !important;
+  transition: all 0.4s ease;
+
 }

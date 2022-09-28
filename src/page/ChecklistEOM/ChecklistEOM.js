@@ -7,7 +7,7 @@ const Header = () => {
     <div>
       <br></br>
       <div className="container-eod">
-        <h1>CHECKLIST EOM</h1>
+        <div className="title-under-construction">CHECKLIST EOM</div>
         <div className="under-construction">
           <img src={image} alt="under-construction"></img>
         </div>
