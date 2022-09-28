@@ -126,11 +126,7 @@ function Chart() {
   const labels = [
     "Senin",
     "Selasa",
-    "Rabu",
-    "Kamis",
-    "Jumat",
-    "Sabtu",
-    "Minggu",
+    "Rabu"
   ];
 
   const data = {

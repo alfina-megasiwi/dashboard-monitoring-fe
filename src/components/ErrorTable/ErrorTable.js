@@ -9,6 +9,7 @@ const ErrorTable = () => {
   const [errorWeekly, setErrorWeekly] = useState([]);
   const [oldLog, setOldLog] = useState([]);
   const [errorLog, setErrorLog] = useState([]);
+  let arrtempo = [1, 2];
 
   const fetchErrorWeekly = async () => {
     try {
@@ -60,7 +61,7 @@ const ErrorTable = () => {
       <div className="error-card">
         <div className="error-card-title">Error Records</div>
         <div className="error-card-body">
-          <Table id="error-table" responsive striped bordered >
+          <Table id="error-table" responsive striped bordered>
             <thead>
               <tr className="halo">
                 <td rowSpan={2}>No.</td>
@@ -98,15 +99,21 @@ const ErrorTable = () => {
                     </td>
                   ))}
 
-                  {errorWeekly.map((itm) => (
+                  {arrtempo.map(() => (
                     <td
                       style={{ color: oldLog.includes(item) ? "black" : "red" }}
                     >
-                      {itm.errorName.map((r) =>
-                        r.name === item ? itm.solvingError : ""
-                      )}
+                      {errorWeekly.map((alo) => (
+                        <div>
+                          {alo.errorName.map((r) =>
+                            r.name === item ? alo.solvingError : ""
+                          )}
+                        </div>
+                      ))}
                     </td>
                   ))}
+
+
                 </tr>
               ))}
             </tbody>
