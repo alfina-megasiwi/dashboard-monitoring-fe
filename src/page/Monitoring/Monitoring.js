@@ -34,7 +34,7 @@ const Monitoring = () => {
               <div
                 className="today-value"
                 style={{ color: item.name === "Error" ? "red" : "white" }}
-              >
+              > 
                 {item.value}
               </div>
             </div>
