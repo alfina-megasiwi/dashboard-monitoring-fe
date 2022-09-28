@@ -1,27 +1,48 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import DataMonitoring from "../../components/DataMonitoring/DataMonitoring";
 import ErrorTable from "../../components/ErrorTable/ErrorTable";
 import "./Monitoring.css";
+import axios from "axios";
 
 const Monitoring = () => {
-  const dataToday = [
+  const [todayData, setTodayData] = useState([]);
+
+  const fetchTodayData = async () => {
+    try {
+      let todaystat = await axios.get(
+        `${process.env.REACT_APP_BACKEND_API_URL}/todaystat`
+      );
+      setTodayData(todaystat.data)
+    } catch (err) {
+      console.log(err);
+      alert("Terdapat kesalahan saat fetch data");
+    }
+  };
+
+  useEffect(() => {
+    fetchTodayData();
+  }, []);
+
+
+  const processedData = [
     {
       name: "Data (Total Records)",
-      value: 19740,
+      value: todayData.totalData,
     },
     {
       name: "Time (Second)",
-      value: 1530,
+      value: todayData.runtime,
     },
     {
       name: "Data/Time",
-      value: 12.9,
+      value: todayData.dataRuntime,
     },
     {
       name: "Error",
-      value: 23,
+      value: todayData.totalError,
     },
   ];
+
   return (
     <div>
       <br />
@@ -29,7 +50,7 @@ const Monitoring = () => {
         <div className="title-monitoring">MONITORING</div>
         <div className="title-today">Today (H-1)</div>
         <div className="card-container">
-          {dataToday.map((item) => (
+          {processedData.map((item) => (
             <div className="card-today">
               <div className="today-title">{item.name}</div>
               <div
@@ -42,9 +63,9 @@ const Monitoring = () => {
           ))}
         </div>
         <br />
-        <br />
         <DataMonitoring />
         <ErrorTable />
+        <br />
       </div>
     </div>
   );
