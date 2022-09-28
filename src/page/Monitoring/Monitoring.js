@@ -12,7 +12,7 @@ const Monitoring = () => {
       let todaystat = await axios.get(
         `${process.env.REACT_APP_BACKEND_API_URL}/todaystat`
       );
-      setTodayData(todaystat.data)
+      setTodayData(todaystat.data);
     } catch (err) {
       console.log(err);
       alert("Terdapat kesalahan saat fetch data");
@@ -22,7 +22,6 @@ const Monitoring = () => {
   useEffect(() => {
     fetchTodayData();
   }, []);
-
 
   const processedData = [
     {
