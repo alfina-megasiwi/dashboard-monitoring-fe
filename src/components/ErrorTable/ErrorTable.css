@@ -33,8 +33,8 @@
 }
 
 .table {
-  --bs-table-bg: rgba(255, 255, 255, 0.64) !important;
-  --bs-table-border-color: #ffffff48 !important;
+  --bs-table-bg: rgba(255, 255, 255, 0.839) !important;
+  --bs-table-border-color: #ffffff84 !important;
   --bs-table-striped-bg: rgba(255, 255, 255, 0.64) !important;
   --bs-table-striped-color: rgb(0, 0, 0) !important;
   --bs-table-color: rgb(0, 0, 0) !important;

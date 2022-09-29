@@ -9,7 +9,7 @@ const ErrorTable = () => {
   const [errorWeekly, setErrorWeekly] = useState([]);
   const [oldLog, setOldLog] = useState([]);
   const [errorLog, setErrorLog] = useState([]);
-  let arrtempo = [1, 2];
+  let arrtempo = [2];
 
   const fetchErrorWeekly = async () => {
     try {
@@ -113,6 +113,7 @@ const ErrorTable = () => {
                     </td>
                   ))}
 
+                  <td></td>
 
                 </tr>
               ))}
