@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 import {
   Chart as ChartJS,
   ArcElement,
@@ -17,16 +16,9 @@ import {
   ScatterController,
   CategoryScale,
   LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
   Legend,
   Title,
   Tooltip,
-  SubTitle,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
@@ -51,8 +43,13 @@ ChartJS.register(
   Legend
 );
 
-function Chart() {
+const Chart = () => {
   const [WeeklyData, setWeeklyData] = useState([]);
+  let weekNames = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
+  let arrdata = [];
+  let arrdate = [];
+  let arrtime = [];
+  let arrerror = [];
 
   const fetchWeeklyData = async () => {
     try {
@@ -68,31 +65,15 @@ function Chart() {
   useEffect(() => {
     fetchWeeklyData();
   }, []);
-  console.log(WeeklyData);
 
-  let arrdata = [];
-  for (let index = 0; index < WeeklyData.length; index++) {
-    arrdata.push(parseInt(WeeklyData[index].data));
+  let indexWeekNames = 0;
+  for (const element of WeeklyData) {
+    arrdata.push(parseInt(element.data));
+    arrdate.push(weekNames[indexWeekNames] + ", " + element.date);
+    arrtime.push(parseInt(element.time));
+    arrerror.push(parseInt(element.error));
+    indexWeekNames++;
   }
-  console.log(arrdata);
-
-  let arrdate = [];
-  for (let index = 0; index < WeeklyData.length; index++) {
-    arrdate.push(WeeklyData[index].date);
-  }
-  console.log(arrdate);
-
-  let arrtime = [];
-  for (let index = 0; index < WeeklyData.length; index++) {
-    arrtime.push(parseInt(WeeklyData[index].time));
-  }
-  console.log(arrtime);
-
-  let arrerror = [];
-  for (let index = 0; index < WeeklyData.length; index++) {
-    arrerror.push(parseInt(WeeklyData[index].error));
-  }
-  console.log(arrerror);
 
   const options = {
     responsive: true,
@@ -123,11 +104,7 @@ function Chart() {
     },
   };
 
-  const labels = [
-    "Senin",
-    "Selasa",
-    "Rabu"
-  ];
+  const labels = arrdate;
 
   const data = {
     labels,
@@ -150,6 +127,6 @@ function Chart() {
     ],
   };
   return <Bar options={options} data={data} />;
-}
+};
 
 export default Chart;

@@ -3,16 +3,37 @@ import DataMonitoring from "../../components/DataMonitoring/DataMonitoring";
 import ErrorTable from "../../components/ErrorTable/ErrorTable";
 import "./Monitoring.css";
 import axios from "axios";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Monitoring = () => {
   const [todayData, setTodayData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  let date = new Date();
+  let currentDate = date.toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  const weekday = [
+    "Minggu",
+    "Senin",
+    "Selasa",
+    "Rabu",
+    "Kamis",
+    "Jumat",
+    "Sabtu",
+  ];
+  let dayIndex = date.getDay();
 
   const fetchTodayData = async () => {
+    setIsLoading(true);
     try {
       let todaystat = await axios.get(
         `${process.env.REACT_APP_BACKEND_API_URL}/todaystat`
       );
       setTodayData(todaystat.data);
+      setIsLoading(false);
     } catch (err) {
       console.log(err);
       alert("Terdapat kesalahan saat fetch data");
@@ -33,12 +54,16 @@ const Monitoring = () => {
       value: todayData.runtime,
     },
     {
-      name: "Data/Time",
+      name: "Record/Seconds",
       value: todayData.dataRuntime,
     },
     {
-      name: "Error",
+      name: "Error (Records)",
       value: todayData.totalError,
+    },
+    {
+      name: "Succes Rate",
+      value: todayData.succesRate + "%",
     },
   ];
 
@@ -47,17 +72,26 @@ const Monitoring = () => {
       <br />
       <div className="main-text">
         <div className="title-monitoring">MONITORING</div>
-        <div className="title-today">Today (H-1)</div>
+
+        <div className="title-today">
+          {weekday[dayIndex]}, {currentDate} (H-1)
+        </div>
         <div className="card-container">
           {processedData.map((item) => (
             <div className="card-today">
               <div className="today-title">{item.name}</div>
-              <div
-                className="today-value"
-                style={{ color: item.name === "Error" ? "red" : "white" }}
-              >
-                {item.value}
-              </div>
+              {isLoading ? (
+                <LoadingSpinner />
+              ) : (
+                <div
+                  className="today-value"
+                  style={{
+                    color: item.name === "Error (Records)" ? "red" : "white",
+                  }}
+                >
+                  {item.value}
+                </div>
+              )}
             </div>
           ))}
         </div>

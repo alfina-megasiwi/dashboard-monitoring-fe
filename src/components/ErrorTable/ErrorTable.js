@@ -23,7 +23,7 @@ const ErrorTable = () => {
       setErrorLog(allError.data);
     } catch (err) {
       console.log(err);
-      alert("Terdapat kesalahan saat fetch data");
+      alert("Terdapat kesalahan saat fetch data error mingguan");
     }
   };
 
@@ -35,7 +35,7 @@ const ErrorTable = () => {
       setOldLog(oldError.data);
     } catch (err) {
       console.log(err);
-      alert("Terdapat kesalahan saat fetch data");
+      alert("Terdapat kesalahan saat fetch error log");
     }
   };
 
@@ -45,12 +45,11 @@ const ErrorTable = () => {
   }, []);
 
   let lengtharr = errorWeekly.length;
-
   for (let i = 0; i < lengtharr; i++) {
     let arrname = errorWeekly[i].errorName;
-    for (let j = 0; j < arrname.length; j++) {
-      if (errorLog.includes(arrname[j].name) == false) {
-        errorLog.push(arrname[j].name);
+    for (const element of arrname) {
+      if (errorLog.includes(element.name) == false) {
+        errorLog.push(element.name);
       }
     }
   }
@@ -68,7 +67,6 @@ const ErrorTable = () => {
                 <td rowSpan={2}>Error</td>
                 <td colSpan={errorWeekly.length}>Date</td>
                 <td rowSpan={2}>Temporary Solve</td>
-                <td rowSpan={2}>Follow-Up</td>
               </tr>
               <tr className="halo">
                 {errorWeekly.map((item) => (
@@ -112,9 +110,6 @@ const ErrorTable = () => {
                       ))}
                     </td>
                   ))}
-
-                  <td></td>
-
                 </tr>
               ))}
             </tbody>

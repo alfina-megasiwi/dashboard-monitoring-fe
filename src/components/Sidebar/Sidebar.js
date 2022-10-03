@@ -1,11 +1,11 @@
 import React from "react";
-import "./Sidebar.css";
-import Logo from "./logo.svg";
 import { MdMonitor, MdError } from "react-icons/md";
 import { TbChecklist } from "react-icons/tb";
 import { BiCalendarCheck } from "react-icons/bi";
 import { RiFlowChart } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import Logo from "./logo.svg";
+import "./Sidebar.css";
 
 const Sidebar = ({ isOpen }) => {
   const menuItem = [
