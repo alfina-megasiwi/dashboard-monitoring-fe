@@ -4,6 +4,7 @@ import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BiCheck } from "react-icons/bi";
 import axios from "axios";
+import ColumnGroupingTable from "../table/ColumnGroupingTable";
 
 const ErrorTable = () => {
   const [errorWeekly, setErrorWeekly] = useState([]);
@@ -48,7 +49,7 @@ const ErrorTable = () => {
   for (let i = 0; i < lengtharr; i++) {
     let arrname = errorWeekly[i].errorName;
     for (const element of arrname) {
-      if (errorLog.includes(element.name) == false) {
+      if (errorLog.includes(element.name) === false) {
         errorLog.push(element.name);
       }
     }
@@ -114,6 +115,8 @@ const ErrorTable = () => {
               ))}
             </tbody>
           </Table>
+          <br/>
+          <ColumnGroupingTable />
         </div>
       </div>
     </div>
