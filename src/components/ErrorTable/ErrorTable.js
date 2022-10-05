@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BiCheck } from "react-icons/bi";
 import axios from "axios";
 import ColumnGroupingTable from "../table/ColumnGroupingTable";
+import MUIDatatables from "../MUIDatatables/MUIDatatables";
 
 const ErrorTable = () => {
   const [errorWeekly, setErrorWeekly] = useState([]);
@@ -116,7 +117,8 @@ const ErrorTable = () => {
             </tbody>
           </Table>
           <br/>
-          <ColumnGroupingTable />
+          {/* <MUIDatatables /> */}
+          {/* <ColumnGroupingTable /> */}
         </div>
       </div>
     </div>

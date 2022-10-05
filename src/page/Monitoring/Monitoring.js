@@ -5,9 +5,11 @@ import "./Monitoring.css";
 import axios from "axios";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
+
 const Monitoring = () => {
   const [todayData, setTodayData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [tab, setTab] = useState("#week");
 
   let date = new Date();
   let currentDate = date.toLocaleDateString("en-GB", {
@@ -72,7 +74,6 @@ const Monitoring = () => {
       <br />
       <div className="main-text">
         <div className="title-monitoring">MONITORING</div>
-
         <div className="title-today">
           {weekday[dayIndex]}, {currentDate} (H-1)
         </div>
@@ -96,8 +97,29 @@ const Monitoring = () => {
           ))}
         </div>
         <br />
-        <DataMonitoring />
-        <ErrorTable />
+        <div className="tab">
+          <button class="week button" onClick={() => setTab("#week")}>Week</button>
+          <button class="month button" onClick={() => setTab("#month")}>Month</button>
+          <button class="year button" onClick={() => setTab("#year")}>Year</button>
+        </div>
+        <br />
+        {tab === "#week" && (
+          <div>
+            <DataMonitoring />
+            <ErrorTable />
+          </div>
+        )}
+        {tab === "#month" && (
+          <div>
+            <p>Month</p>
+          </div>
+        )}
+        {tab === "#year" && (
+          <div>
+            <p>Year</p>
+          </div>
+        )}
+
         <br />
       </div>
     </div>
