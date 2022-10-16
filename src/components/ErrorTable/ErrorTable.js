@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BiCheck } from "react-icons/bi";
 import axios from "axios";
 import ColumnGroupingTable from "../table/ColumnGroupingTable";
-import MUIDatatables from "../MUIDatatables/MUIDatatables";
+// import MUIDatatables from "../MUIDatatables/MUIDatatables";
 
 const ErrorTable = () => {
   const [errorWeekly, setErrorWeekly] = useState([]);
@@ -16,7 +16,7 @@ const ErrorTable = () => {
   const fetchErrorWeekly = async () => {
     try {
       let errorData = await axios.get(
-        `${process.env.REACT_APP_BACKEND_API_URL}/weeklyerror`
+        `${process.env.REACT_APP_BACKEND_API_URL}/monthlyerror`
       );
       let allError = await axios.get(
         `${process.env.REACT_APP_BACKEND_API_URL}/errorlog`

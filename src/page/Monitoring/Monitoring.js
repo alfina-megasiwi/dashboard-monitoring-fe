@@ -1,22 +1,20 @@
 import { React, useEffect, useState } from "react";
-import DataMonitoring from "../../components/DataMonitoring/DataMonitoring";
-import ErrorTable from "../../components/ErrorTable/ErrorTable";
-import "./Monitoring.css";
 import axios from "axios";
+import DataMonitoring from "../../components/DataMonitoring/DataMonitoring";
+// import ErrorTable from "../../components/ErrorTable/ErrorTable";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-
+import "./Monitoring.css";
+import LineChartExample from "../../components/LineChartExample/LineChartExample";
+import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker-cssmodules.css";
 
 const Monitoring = () => {
   const [todayData, setTodayData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [tab, setTab] = useState("#week");
+  const [startDate, setStartDate] = useState(new Date());
 
   let date = new Date();
-  let currentDate = date.toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
   const weekday = [
     "Minggu",
     "Senin",
@@ -26,13 +24,32 @@ const Monitoring = () => {
     "Jumat",
     "Sabtu",
   ];
+
+  const month = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
+  ];
+
+  let dateNow = date.getDate();
+  let yearNow = date.getFullYear();
   let dayIndex = date.getDay();
+  let monthIndex = date.getMonth();
 
   const fetchTodayData = async () => {
     setIsLoading(true);
     try {
       let todaystat = await axios.get(
-        `${process.env.REACT_APP_BACKEND_API_URL}/todaystat`
+        `${process.env.REACT_APP_BACKEND_API_URL}/today-stat`
       );
       setTodayData(todaystat.data);
       setIsLoading(false);
@@ -46,26 +63,30 @@ const Monitoring = () => {
     fetchTodayData();
   }, []);
 
+  window.onload = function () {
+    document.querySelector(".week").focus();
+  };
+
   const processedData = [
     {
       name: "Data (Total Records)",
-      value: todayData.totalData,
+      value: todayData.DATA,
     },
     {
       name: "Time (Second)",
-      value: todayData.runtime,
+      value: todayData.TIME,
     },
     {
       name: "Record/Seconds",
-      value: todayData.dataRuntime,
+      value: todayData.RUNTIME,
     },
     {
       name: "Error (Records)",
-      value: todayData.totalError,
+      value: todayData.ERROR,
     },
     {
       name: "Succes Rate",
-      value: todayData.succesRate + "%",
+      value: todayData.SUCCESS_RATE + "%",
     },
   ];
 
@@ -75,7 +96,7 @@ const Monitoring = () => {
       <div className="main-text">
         <div className="title-monitoring">MONITORING</div>
         <div className="title-today">
-          {weekday[dayIndex]}, {currentDate} (H-1)
+          {weekday[dayIndex]}, {dateNow} {month[monthIndex]} {yearNow} (H-1)
         </div>
         <div className="card-container">
           {processedData.map((item) => (
@@ -98,28 +119,37 @@ const Monitoring = () => {
         </div>
         <br />
         <div className="tab">
-          <button class="week button" onClick={() => setTab("#week")}>Week</button>
-          <button class="month button" onClick={() => setTab("#month")}>Month</button>
-          <button class="year button" onClick={() => setTab("#year")}>Year</button>
+          <button class="week button" onClick={() => setTab("#week")}>
+            Week
+          </button>
+          <button class="month button" onClick={() => setTab("#month")}>
+            Month
+          </button>
+          <button class="year button" onClick={() => setTab("#year")}>
+            Year
+          </button>
         </div>
         <br />
         {tab === "#week" && (
           <div>
-            <DataMonitoring />
-            <ErrorTable />
+            <br />
+            <DataMonitoring type={"week"} />
+            <LineChartExample type={"week"} />
+            {/* <ErrorTable /> */}
           </div>
         )}
         {tab === "#month" && (
           <div>
-            <p>Month</p>
+            <DataMonitoring type={"month"} />
+            <LineChartExample type={"month"} />
           </div>
         )}
         {tab === "#year" && (
           <div>
-            <p>Year</p>
+            <DataMonitoring type={"year"} />
+            <LineChartExample type={"year"} />
           </div>
         )}
-
         <br />
       </div>
     </div>

@@ -74,8 +74,12 @@
   border-bottom-right-radius: 20px;
 }
 
-.button:hover, .button:focus {
+.button:hover,
+.button:focus,
+.week:focus {
   background: rgba(0, 0, 0, 0.33);
   color: white;
   transition: all 0.3s ease;
+  outline: none;
 }
+

@@ -43,20 +43,19 @@ ChartJS.register(
   Legend
 );
 
-const Chart = () => {
-  const [WeeklyData, setWeeklyData] = useState([]);
+const Chart = ({type}) => {
   let weekNames = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
-  let arrdata = [];
+  const [WeeklyData, setWeeklyData] = useState([]);
+  const [dayOfTheWeek, setDayOfTheWeek] = useState(weekNames);
   let arrdate = [];
-  let arrtime = [];
-  let arrerror = [];
 
   const fetchWeeklyData = async () => {
     try {
       let WeeklyData = await axios.get(
-        `${process.env.REACT_APP_BACKEND_API_URL}/weeklydata`
+        `${process.env.REACT_APP_BACKEND_API_URL}/this-week-data`
       );
       setWeeklyData(WeeklyData.data);
+      setDayOfTheWeek(WeeklyData.data.date)
     } catch (err) {
       console.log(err);
       alert("Terdapat kesalahan dalam fetch data");
@@ -67,11 +66,8 @@ const Chart = () => {
   }, []);
 
   let indexWeekNames = 0;
-  for (const element of WeeklyData) {
-    arrdata.push(parseInt(element.data));
-    arrdate.push(weekNames[indexWeekNames] + ", " + element.date);
-    arrtime.push(parseInt(element.time));
-    arrerror.push(parseInt(element.error));
+  for (const element of dayOfTheWeek) {
+    arrdate.push(weekNames[indexWeekNames] + ", " + element);
     indexWeekNames++;
   }
 
@@ -105,23 +101,22 @@ const Chart = () => {
   };
 
   const labels = arrdate;
-
   const data = {
     labels,
     datasets: [
       {
         label: "Data (Total Record)",
-        data: arrdata,
+        data: WeeklyData.data,
         backgroundColor: "#2C9DFB",
       },
       {
         label: "Time (Second)",
-        data: arrtime,
+        data: WeeklyData.time,
         backgroundColor: "#FFD700",
       },
       {
         label: "Error",
-        data: arrerror,
+        data: WeeklyData.error,
         backgroundColor: "#FF0000",
       },
     ],
