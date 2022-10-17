@@ -1,12 +1,13 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
 import DataMonitoring from "../../components/DataMonitoring/DataMonitoring";
-// import ErrorTable from "../../components/ErrorTable/ErrorTable";
+import ErrorTable from "../../components/ErrorTable/ErrorTable";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import "./Monitoring.css";
 import LineChartExample from "../../components/LineChartExample/LineChartExample";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
+import ColumnGroupingTable from "../../components/table/ColumnGroupingTable";
 
 const Monitoring = () => {
   const [todayData, setTodayData] = useState([]);
@@ -132,22 +133,23 @@ const Monitoring = () => {
         <br />
         {tab === "#week" && (
           <div>
-            <br />
             <DataMonitoring type={"week"} />
             <LineChartExample type={"week"} />
-            {/* <ErrorTable /> */}
+            <ErrorTable type={"week"}/>
           </div>
         )}
         {tab === "#month" && (
           <div>
             <DataMonitoring type={"month"} />
             <LineChartExample type={"month"} />
+            <ErrorTable type={"month"}/>
           </div>
         )}
         {tab === "#year" && (
           <div>
             <DataMonitoring type={"year"} />
             <LineChartExample type={"year"} />
+            <ErrorTable type={"year"}/>
           </div>
         )}
         <br />

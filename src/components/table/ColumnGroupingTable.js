@@ -1,131 +1,122 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
+import { React, useEffect, useState } from "react";
+import axios from "axios";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
 
-const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-  {
-    id: 'population',
-    label: 'Population',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
-];
+export default function ColumnGroupingTable({ type }) {
+  const [errorWeekly, setErrorWeekly] = useState([]);
+  const [week, setWeek] = useState([]);
+  let allKey = [];
 
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
-
-const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
-];
-
-export default function ColumnGroupingTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  const fetchWeek = async () => {
+    try {
+      if (type === "week") {
+        let week = await axios.get(
+          `${process.env.REACT_APP_BACKEND_API_URL}/get-week`
+        );
+        setWeek(week.data);
+      } else if (type === "month") {
+        let week = await axios.get(
+          `${process.env.REACT_APP_BACKEND_API_URL}/get-month`
+        );
+        setWeek(week.data);
+      } else {
+        let week = await axios.get(
+          `${process.env.REACT_APP_BACKEND_API_URL}/get-year`
+        );
+        setWeek(week.data);
+      }
+    } catch (err) {
+      console.log(err);
+      alert("Terdapat kesalahan saat fetch data week");
+    }
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
+  const fetchErrorWeekly = async () => {
+    try {
+      if (type === "week") {
+        let errorData = await axios.get(
+          `${process.env.REACT_APP_BACKEND_API_URL}/this-week-error`
+        );
+        setErrorWeekly(errorData.data);
+      } else if (type === "month") {
+        let errorData = await axios.get(
+          `${process.env.REACT_APP_BACKEND_API_URL}/this-month-error`
+        );
+        setErrorWeekly(errorData.data);
+      } else {
+        let errorData = await axios.get(
+          `${process.env.REACT_APP_BACKEND_API_URL}/this-year-error`
+        );
+        setErrorWeekly(errorData.data);
+      }
+    } catch (err) {
+      console.log(err);
+      alert("Terdapat kesalahan saat fetch data error mingguan");
+    }
   };
+
+  useEffect(() => {
+    fetchErrorWeekly();
+    fetchWeek();
+  }, []);
+
+  allKey = Object.keys(errorWeekly);
 
   return (
-    <Paper sx={{ width: '100%' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
+    <Paper sx={{ width: "100%" }}>
+      <TableContainer>
+        <Table stickyHeader>
           <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={2}>
-                Country
+              <TableCell align="center" rowSpan={2}>
+                No
               </TableCell>
-              <TableCell align="center" colSpan={3}>
-                Details
+              <TableCell align="center" rowSpan={2}>
+                Error
+              </TableCell>
+              <TableCell align="center" colSpan={week.length}>
+                Date
+              </TableCell>
+              <TableCell align="center" rowSpan={2}>
+                Keterangan
               </TableCell>
             </TableRow>
             <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ top: 57, minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
+              {week.map((itm) => (
+                <TableCell>{itm.substring(0, 3)}</TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+            {allKey.map((key, idx) => (
+              <TableRow>
+                <TableCell>{idx + 1}</TableCell>
+                <TableCell>{key}</TableCell>
+                {errorWeekly[key].map((itm, id) => (
+                  <TableCell>
+                    {itm.length > 0 && id == errorWeekly[key].length - 1 ? (
+                      <ul>
+                        {itm.map((test) => (
+                          <li><b>{test[0]}:</b> {test[1]}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      itm
+                    )}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
     </Paper>
   );
 }
