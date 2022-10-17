@@ -65,12 +65,15 @@ export default function ColumnGroupingTable({ type }) {
   useEffect(() => {
     fetchErrorWeekly();
     fetchWeek();
+    setInterval(fetchErrorWeekly, 1000 * 60 * 60)
+    setInterval(fetchWeek, 1000 * 60 * 60)
+
   }, []);
 
   allKey = Object.keys(errorWeekly);
 
   return (
-    <Paper sx={{ width: "100%" }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer>
         <Table stickyHeader>
           <TableHead>
@@ -104,7 +107,12 @@ export default function ColumnGroupingTable({ type }) {
                     {itm.length > 0 && id == errorWeekly[key].length - 1 ? (
                       <ul>
                         {itm.map((test) => (
-                          <li><b>{test[0]}:</b> {test[1]}</li>
+                          <li>
+                            <b>
+                              {test[0]} ({test[2]}):
+                            </b>{" "}
+                            {test[1]}
+                          </li>
                         ))}
                       </ul>
                     ) : (

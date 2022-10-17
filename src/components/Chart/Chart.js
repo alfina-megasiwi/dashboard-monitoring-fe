@@ -63,6 +63,7 @@ const Chart = ({type}) => {
   };
   useEffect(() => {
     fetchWeeklyData();
+    setInterval(fetchWeeklyData, 1000 * 60 * 60)
   }, []);
 
   let indexWeekNames = 0;

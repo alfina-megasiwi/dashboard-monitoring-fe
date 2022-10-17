@@ -62,6 +62,7 @@ const Monitoring = () => {
 
   useEffect(() => {
     fetchTodayData();
+    setInterval(fetchTodayData, 1000 * 60 * 60)
   }, []);
 
   window.onload = function () {
@@ -90,6 +91,19 @@ const Monitoring = () => {
       value: todayData.SUCCESS_RATE + "%",
     },
   ];
+
+  var datetime =
+    ("0" + date.getDate()).slice(-2) +
+    "-" +
+    ("0" + date.getMonth()+1).slice(-2) +
+    "-" +
+    date.getFullYear() +
+    " " +
+    ("0" + date.getHours()).slice(-2)+
+    ":" +
+    ("0" + date.getMinutes()).slice(-2) +
+    ":" +
+    ("0" + date.getSeconds()).slice(-2);
 
   return (
     <div>
@@ -135,23 +149,25 @@ const Monitoring = () => {
           <div>
             <DataMonitoring type={"week"} />
             <LineChartExample type={"week"} />
-            <ErrorTable type={"week"}/>
+            <ErrorTable type={"week"} />
           </div>
         )}
         {tab === "#month" && (
           <div>
             <DataMonitoring type={"month"} />
             <LineChartExample type={"month"} />
-            <ErrorTable type={"month"}/>
+            <ErrorTable type={"month"} />
           </div>
         )}
         {tab === "#year" && (
           <div>
             <DataMonitoring type={"year"} />
             <LineChartExample type={"year"} />
-            <ErrorTable type={"year"}/>
+            <ErrorTable type={"year"} />
           </div>
         )}
+        <br />
+        <h5 style={{ textAlign: "right" }}>Last Update: {datetime} WIB</h5>
         <br />
       </div>
     </div>

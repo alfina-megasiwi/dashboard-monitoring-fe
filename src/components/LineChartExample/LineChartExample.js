@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
 import "./LineChartExampe.css";
-import * as ChartAnnotation from 'chartjs-plugin-annotation';
+import * as ChartAnnotation from "chartjs-plugin-annotation";
 
 const LineChartExample = ({ type }) => {
   const [WeeklyData, setWeeklyData] = useState([]);
@@ -63,6 +63,7 @@ const LineChartExample = ({ type }) => {
   };
   useEffect(() => {
     fetchData();
+    setInterval(fetchData, 1000 * 60 * 60)
   }, []);
 
   const options = {
@@ -112,7 +113,7 @@ const LineChartExample = ({ type }) => {
         <div className="error-card">
           <div className="error-card-title">Record/Seconds Chart</div>
           <div className="error-card-body">
-            <Line options={options} data={data} plugins={[ChartAnnotation]}/>
+            <Line options={options} data={data} plugins={[ChartAnnotation]} />
           </div>
         </div>
       </div>
