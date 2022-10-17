@@ -43,19 +43,55 @@ ChartJS.register(
   Legend
 );
 
-const Chart = ({type}) => {
-  let weekNames = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
+const Chart = ({ type }) => {
+  let weekNames = [
+    "Senin",
+    "Selasa",
+    "Rabu",
+    "Kamis",
+    "Jumat",
+    "Sabtu",
+    "Minggu",
+  ];
+  let monthNames = ["Minggu 1", "Minggu 2", "Minggu 3", "Minggu 4"];
+  let yearNames = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
+  ];
   const [WeeklyData, setWeeklyData] = useState([]);
   const [dayOfTheWeek, setDayOfTheWeek] = useState(weekNames);
   let arrdate = [];
 
   const fetchWeeklyData = async () => {
     try {
-      let WeeklyData = await axios.get(
-        `${process.env.REACT_APP_BACKEND_API_URL}/this-week-data`
-      );
-      setWeeklyData(WeeklyData.data);
-      setDayOfTheWeek(WeeklyData.data.date)
+      if (type === "week") {
+        let WeeklyData = await axios.get(
+          `${process.env.REACT_APP_BACKEND_API_URL}/this-week-data`
+        );
+        setWeeklyData(WeeklyData.data);
+        setDayOfTheWeek(WeeklyData.data.date);
+      } else if (type == "month") {
+        let WeeklyData = await axios.get(
+          `${process.env.REACT_APP_BACKEND_API_URL}/this-month-data`
+        );
+        setWeeklyData(WeeklyData.data);
+        setDayOfTheWeek(WeeklyData.data[0]);
+      } else {
+        let WeeklyData = await axios.get(
+          `${process.env.REACT_APP_BACKEND_API_URL}/this-year-data`
+        );
+        setWeeklyData(WeeklyData.data);
+        setDayOfTheWeek(WeeklyData.data[0]);
+      }
     } catch (err) {
       console.log(err);
       alert("Terdapat kesalahan dalam fetch data");
@@ -65,10 +101,25 @@ const Chart = ({type}) => {
     fetchWeeklyData();
   }, []);
 
-  let indexWeekNames = 0;
-  for (const element of dayOfTheWeek) {
-    arrdate.push(weekNames[indexWeekNames] + ", " + element);
-    indexWeekNames++;
+  if (type === "week") {
+    let indexWeekNames = 0;
+    for (const element of dayOfTheWeek) {
+      arrdate.push(weekNames[indexWeekNames] + ", " + element);
+      indexWeekNames++;
+    }
+  } else if (type == "month") {
+    let indexMonthNames = 0;
+    for (const element of dayOfTheWeek) {
+      console.log(element);
+      arrdate.push(monthNames[indexMonthNames]);
+      indexMonthNames++;
+    }
+  } else {
+    let indexYearNames = 0;
+    for (const element of dayOfTheWeek) {
+      arrdate.push(yearNames[indexYearNames]);
+      indexYearNames++;
+    }
   }
 
   const options = {
@@ -99,28 +150,52 @@ const Chart = ({type}) => {
       },
     },
   };
-
+  let data;
   const labels = arrdate;
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Data (Total Record)",
-        data: WeeklyData.data,
-        backgroundColor: "#2C9DFB",
-      },
-      {
-        label: "Time (Second)",
-        data: WeeklyData.time,
-        backgroundColor: "#FFD700",
-      },
-      {
-        label: "Error",
-        data: WeeklyData.error,
-        backgroundColor: "#FF0000",
-      },
-    ],
+  if (type === "week") {
+    data = {
+      labels,
+      datasets: [
+        {
+          label: "Data (Total Record)",
+          data: WeeklyData.data,
+          backgroundColor: "#2C9DFB",
+        },
+        {
+          label: "Time (Second)",
+          data: WeeklyData.time,
+          backgroundColor: "#FFD700",
+        },
+        {
+          label: "Error",
+          data: WeeklyData.error,
+          backgroundColor: "#FF0000",
+        },
+      ],
+    };
+  } else {
+    data = {
+      labels,
+      datasets: [
+        {
+          label: "Data (Total Record)",
+          data: WeeklyData[0],
+          backgroundColor: "#2C9DFB",
+        },
+        {
+          label: "Time (Second)",
+          data: WeeklyData[1],
+          backgroundColor: "#FFD700",
+        },
+        {
+          label: "Error",
+          data: WeeklyData[2],
+          backgroundColor: "#FF0000",
+        },
+      ],
+    };
   };
+
   return <Bar options={options} data={data} />;
 };
 
