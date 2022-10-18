@@ -3,13 +3,13 @@ import Chart from "../../components/Chart/Chart";
 import "../ErrorTable/ErrorTable.css"
 import "./DataMonitoring.css";
 
-const DataMonitoring = () => {
+const DataMonitoring = ({type}) => {
   return (
     <div>
       <div className="data-montoring-card">
         <div className="data-montoring-card-title">Data Monitoring</div>
         <div className="data-montoring-card-body">
-          <Chart />
+          <Chart type = {type}/>
         </div>
       </div>
     </div>
