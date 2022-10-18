@@ -105,6 +105,7 @@ const LineChartExample = ({ type }) => {
         pointRadius: 0,
         data: threshold,
         borderColor: "rgb(255, 0, 0)",
+        borderDash: [15,10]
       },
       {
         label: "Record/Seconds",
