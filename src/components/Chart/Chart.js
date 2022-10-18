@@ -53,7 +53,7 @@ const Chart = ({ type }) => {
     "Sabtu",
     "Minggu",
   ];
-  let monthNames = ["Minggu 1", "Minggu 2", "Minggu 3", "Minggu 4"];
+  let monthNames = ["Week 1", "Week 2", "Week 3", "Week 4"];
   let yearNames = [
     "Januari",
     "Februari",

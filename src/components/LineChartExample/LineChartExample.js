@@ -63,7 +63,7 @@ const LineChartExample = ({ type }) => {
   };
   useEffect(() => {
     fetchData();
-    setInterval(fetchData, 1000 * 60 * 60)
+    setInterval(fetchData, 1000 * 60 * 60);
   }, []);
 
   const options = {
@@ -94,9 +94,18 @@ const LineChartExample = ({ type }) => {
       },
     },
   };
+
+  const threshold = Array(indicator.length).fill(14.89);
+
   const data = {
     labels: indicator,
     datasets: [
+      {
+        label: "Threshold",
+        pointRadius: 0,
+        data: threshold,
+        borderColor: "rgb(255, 0, 0)",
+      },
       {
         label: "Record/Seconds",
         data: WeeklyData,
@@ -106,6 +115,7 @@ const LineChartExample = ({ type }) => {
       },
     ],
   };
+
 
   return (
     <div className="lchart">

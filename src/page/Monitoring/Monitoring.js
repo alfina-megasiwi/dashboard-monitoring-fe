@@ -7,7 +7,6 @@ import "./Monitoring.css";
 import LineChartExample from "../../components/LineChartExample/LineChartExample";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
-import ColumnGroupingTable from "../../components/table/ColumnGroupingTable";
 
 const Monitoring = () => {
   const [todayData, setTodayData] = useState([]);
@@ -62,7 +61,7 @@ const Monitoring = () => {
 
   useEffect(() => {
     fetchTodayData();
-    setInterval(fetchTodayData, 1000 * 60 * 60)
+    setInterval(fetchTodayData, 1000 * 60 * 60);
   }, []);
 
   window.onload = function () {
@@ -95,11 +94,11 @@ const Monitoring = () => {
   var datetime =
     ("0" + date.getDate()).slice(-2) +
     "-" +
-    ("0" + date.getMonth()+1).slice(-2) +
+    ("0" + date.getMonth() + 1).slice(-2) +
     "-" +
     date.getFullYear() +
     " " +
-    ("0" + date.getHours()).slice(-2)+
+    ("0" + date.getHours()).slice(-2) +
     ":" +
     ("0" + date.getMinutes()).slice(-2) +
     ":" +
