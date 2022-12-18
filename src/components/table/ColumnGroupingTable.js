@@ -20,7 +20,7 @@ export default function ColumnGroupingTable({ type }) {
         let week = await axios.get(
           `${process.env.REACT_APP_BACKEND_API_URL}/get-week`
         );
-        setWeek(week.data);
+        setWeek(["25 ", "26 ", "27 ", "28 ", "29 ", "30 ", "31 "]);
       } else if (type === "month") {
         let week = await axios.get(
           `${process.env.REACT_APP_BACKEND_API_URL}/get-month`
@@ -65,15 +65,14 @@ export default function ColumnGroupingTable({ type }) {
   useEffect(() => {
     fetchErrorWeekly();
     fetchWeek();
-    setInterval(fetchErrorWeekly, 1000 * 60 * 60)
-    setInterval(fetchWeek, 1000 * 60 * 60)
-
+    setInterval(fetchErrorWeekly, 1000 * 60 * 60);
+    setInterval(fetchWeek, 1000 * 60 * 60);
   }, []);
 
   allKey = Object.keys(errorWeekly);
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: 500 }}>
         <Table stickyHeader>
           <TableHead>

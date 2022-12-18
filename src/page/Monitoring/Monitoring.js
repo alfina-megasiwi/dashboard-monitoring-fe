@@ -109,7 +109,7 @@ const Monitoring = () => {
       <div className="main-text">
         <div className="title-monitoring">MONITORING</div>
         <div className="title-today">
-          {weekday[dayIndex]}, {dateNow} {month[monthIndex]} {yearNow} (H-1)
+          Senin, 1 November 2022 (H-1)
         </div>
         <div className="card-container">
           {processedData.map((item) => (

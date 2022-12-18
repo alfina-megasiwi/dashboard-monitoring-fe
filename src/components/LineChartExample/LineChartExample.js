@@ -10,13 +10,13 @@ const LineChartExample = ({ type }) => {
   const [thresholdd, setThresholdd] = useState(0);
 
   const weekday = [
-    "Senin",
     "Selasa",
     "Rabu",
     "Kamis",
     "Jumat",
     "Sabtu",
     "Minggu",
+    "Senin",
   ];
 
   const accumulation_week = ["Week 1", "Week 2", "Week 3", "Week 4"];

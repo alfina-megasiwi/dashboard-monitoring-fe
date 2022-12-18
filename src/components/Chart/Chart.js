@@ -45,13 +45,13 @@ ChartJS.register(
 
 const Chart = ({ type }) => {
   let weekNames = [
-    "Senin",
     "Selasa",
     "Rabu",
     "Kamis",
     "Jumat",
     "Sabtu",
     "Minggu",
+    "Senin"
   ];
   let monthNames = ["Week 1", "Week 2", "Week 3", "Week 4"];
   let yearNames = [
@@ -61,6 +61,7 @@ const Chart = ({ type }) => {
     "April",
     "Mei",
     "Juni",
+    "Juli",
     "Agustus",
     "September",
     "Oktober",
