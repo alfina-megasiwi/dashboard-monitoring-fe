@@ -74,7 +74,7 @@ export default function ColumnGroupingTable({ type }) {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer>
+      <TableContainer sx={{ maxHeight: 500 }}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>

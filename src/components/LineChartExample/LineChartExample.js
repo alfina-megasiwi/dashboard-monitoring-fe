@@ -7,6 +7,7 @@ import * as ChartAnnotation from "chartjs-plugin-annotation";
 const LineChartExample = ({ type }) => {
   const [WeeklyData, setWeeklyData] = useState([]);
   const [indicator, setIndicator] = useState("");
+  const [thresholdd, setThresholdd] = useState(0);
 
   const weekday = [
     "Senin",
@@ -34,6 +35,18 @@ const LineChartExample = ({ type }) => {
     "November",
     "Desember",
   ];
+
+  const fecthThreshold = async () => {
+    try {
+      let threshold = await axios.get(
+        `${process.env.REACT_APP_BACKEND_API_URL}/threshold`
+      );
+      setThresholdd(threshold.data);
+    } catch (error) {
+      console.log(error);
+      alert("Terdapat kesalahan dalam fetch data threshold");
+    }
+  };
 
   const fetchData = async () => {
     try {
@@ -63,6 +76,7 @@ const LineChartExample = ({ type }) => {
   };
   useEffect(() => {
     fetchData();
+    fecthThreshold();
     setInterval(fetchData, 1000 * 60 * 60);
   }, []);
 
@@ -95,16 +109,17 @@ const LineChartExample = ({ type }) => {
     },
   };
 
-  const threshold = Array(indicator.length).fill(14.89);
-
+  const threshold = Array(indicator.length).fill(thresholdd);
+  console.log(thresholdd);
   const data = {
     labels: indicator,
     datasets: [
       {
-        label: "Threshold",
+        label: "Threshold:" + " " + thresholdd,
         pointRadius: 0,
         data: threshold,
         borderColor: "rgb(255, 0, 0)",
+        borderDash: [15, 10],
       },
       {
         label: "Record/Seconds",
@@ -115,7 +130,6 @@ const LineChartExample = ({ type }) => {
       },
     ],
   };
-
 
   return (
     <div className="lchart">

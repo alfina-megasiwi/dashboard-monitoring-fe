@@ -12,7 +12,6 @@ const Monitoring = () => {
   const [todayData, setTodayData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [tab, setTab] = useState("#week");
-  const [startDate, setStartDate] = useState(new Date());
 
   let date = new Date();
   const weekday = [
@@ -94,7 +93,7 @@ const Monitoring = () => {
   var datetime =
     ("0" + date.getDate()).slice(-2) +
     "-" +
-    ("0" + date.getMonth() + 1).slice(-2) +
+    ("0" + (date.getMonth() + 1)).slice(-2) +
     "-" +
     date.getFullYear() +
     " " +
